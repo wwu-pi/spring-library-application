@@ -24,7 +24,7 @@ public class StdBookService implements BookService {
 	@Override
 	public Book getBook(int bookId) throws NoSuchElementException {
 		Optional<Book> possiblyStoredBook = bookRepository.findById(bookId);
-		if (possiblyStoredBook.isEmpty()) {
+		if (!possiblyStoredBook.isPresent()) {
 			throw new NoSuchElementException("Book with given ID does not exist");
 		} else {
 			return possiblyStoredBook.get();

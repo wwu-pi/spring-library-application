@@ -32,7 +32,7 @@ public class StdLoanService implements LoanService {
 	@Override
 	public void returnLoan(int loanToReturnId, User user) throws NoSuchElementException {
 		Optional<Loan> possiblyStoredLoan = loanRepository.findById(loanToReturnId);
-		if (possiblyStoredLoan.isEmpty()) {
+		if (!possiblyStoredLoan.isPresent()) {
 			throw new NoSuchElementException("Loan not found");
 		}
 		Loan storedLoan = possiblyStoredLoan.get();

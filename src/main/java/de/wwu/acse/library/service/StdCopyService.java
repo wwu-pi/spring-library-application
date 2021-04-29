@@ -31,7 +31,7 @@ public class StdCopyService implements CopyService {
 	public Collection<Copy> createCopies(Medium m, int count) throws NoSuchElementException {
 		List<Copy> result = new ArrayList<>();
 		Optional<Medium> possiblyStoredMedium = mediumRepository.findById(m.getId());
-		if (possiblyStoredMedium.isEmpty()) {
+		if (!possiblyStoredMedium.isPresent()) {
 			throw new NoSuchElementException("The medium cannot be found");
 		}
 
@@ -58,7 +58,7 @@ public class StdCopyService implements CopyService {
 	@Override
 	public Copy getCopy(int invNo) throws NoSuchElementException {
 		Optional<Copy> possibleCopy = copyRepository.findById(invNo);
-		if (possibleCopy.isEmpty()) {
+		if (!possibleCopy.isPresent()) {
 			throw new NoSuchElementException("There is no copy with the given ID.");
 		} else {
 			return possibleCopy.get();
