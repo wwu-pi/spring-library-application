@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="navigation :: head"></head>
+	<body>
+		<nav th:replace="navigation :: nav('books')"></nav>
+
+        <div class="main">
+            <h1>Details about the book and its copies</h1>
+
+            <table>
+                <tr>
+                    <td><span>ID:</span></td>
+                    <td><span th:text="${book.id}">ID</span></td>
+                </tr>
+                <tr>
+                    <td><span>ISBN:</span></td>
+                    <td><span th:text="${book.isbn}">ISBN</span></td>
+                </tr>
+                <tr>
+                    <td><span>Author:</span></td>
+                    <td><span th:text="${book.author}">AUTHOR</span></td>
+                </tr>
+                <tr>
+                    <td><span>Title:</span></td>
+                    <td><span th:text="${book.title}">TITLE</span></td>
+                </tr>
+            </table>
+
+            <h2>Available copies of this book</h2>
+
+            <p th:if="${#lists.isEmpty(copies)}">This book has no available copies</p>
+
+            <table th:if="!${#lists.isEmpty(copies)}">
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Loan </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="copy : ${copies}">
+                        <td><span th:text="${copy.inventoryNo}"> ID </span></td>
+                        <td><a th:href="@{/loan/loan(bookId=${book.id},copyId=${copy.inventoryNo})}">loan now</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

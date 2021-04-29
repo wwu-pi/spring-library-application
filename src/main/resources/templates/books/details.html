@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="navigation :: head"></head>
+	<body>
+		<nav th:replace="navigation :: nav('books')"></nav>
+        <div class="main">
+
+            <h1>Details about the book</h1>
+
+            <br/> <img th:src="${thumbnail}" /> <br/>
+
+            <table>
+                <tr>
+                    <td><span>ID:</span></td>
+                    <td><span th:text="${book.id}">ID</span></td>
+                </tr>
+                <tr>
+                    <td><span>ISBN:</span></td>
+                    <td><span th:text="${book.isbn}">ISBN</span></td>
+                </tr>
+                <tr>
+                    <td><span>Author:</span></td>
+                    <td><span th:text="${book.author}">AUTHOR</span></td>
+                </tr>
+                <tr>
+                    <td><span>Title:</span></td>
+                    <td><span th:text="${book.title}">TITLE</span></td>
+                </tr>
+            </table>
+
+           
+        </div>
+    </body>
+</html>

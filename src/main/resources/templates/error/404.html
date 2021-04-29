@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="navigation :: head)"></head>
+
+<body>
+
+<nav th:replace="navigation :: nav('error')"></nav>
+
+<main role="main" class="container">
+	<h1>
+		<span th:text="${status}">404</span>
+	</h1>
+	<span th:text="${message != '' ? message : 'Not Found'}">Not Found</span>
+</main>
+
+<footer th:replace="layout_fragments :: footer"></footer>
+
+</body>
+</html>

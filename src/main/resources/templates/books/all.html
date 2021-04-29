@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="navigation :: head"></head>
+	<body>
+		<nav th:replace="navigation :: nav('books')"></nav>
+
+        <div class="main">
+            <div style="font-size: 12px;padding: 8px;">
+                <a href="/books/create">CREATE NEW BOOK</a>
+            </div>
+
+            <h1>All books in this library</h1>            
+
+            <p th:if="${#lists.isEmpty(books)}">No books available in this library</p>
+
+            <table th:if="!${#lists.isEmpty(books)}">
+                <thead>
+                    <tr>
+                        <th> ISBN </th>
+                        <th> Author </th>
+                        <th> Title </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="book : ${books}">
+                        <td><span th:text="${book.isbn}"> ISBN </span></td>
+                        <td><span th:text="${book.author}"> AUTHOR </span></td>
+                        <td><span th:text="${book.title}"> TITLE </span></td>
+                        <td><a th:href="@{'/books/' + ${book.id}}">show details</a></td>
+                        <td><a th:href="@{'/copies/' + ${book.id}}">show copies</a></td>
+                        <td><a th:href="@{'/books/' + ${book.id} + '/edit'}">edit</a></td>
+                        <td><a th:href="@{'/books/' + ${book.id} + '/delete'}">delete</a></td>
+                        <td><a th:href="@{'/loan/' + ${book.id}}">loan</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

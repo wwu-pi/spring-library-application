@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="navigation :: head"></head>
+	
+	<body>
+		<nav th:replace="navigation :: nav('register')"></nav>
+			
+        <div class="form-style-2">
+			<div class="form-style-2-heading">Register</div>
+			<form method="POST" th:action="@{/users/create}" id="registerForm">
+				<label for="username">
+					<span>Username <span class="required">*</span></span>
+					<input type="text" class="input-field" id="username" name="username" value="" />
+				</label>
+				<label for="password">
+					<span>Password <span class="required">*</span></span>
+					<input type="password" class="input-field" id="password" name="password" value="" />
+				</label>
+				<label>
+					<span></span>
+					<input type="submit" value="Register" />
+				</label>
+			</form>
+		</div>
+	</body>
+
+</html>
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="navigation :: head"></head>
+	<body>
+		<nav th:replace="navigation :: nav('books')"></nav>
+
+        <div class="main">
+            <h1>Details about the book and its copies</h1>
+
+            <table>
+                <tr>
+                    <td><span>ID:</span></td>
+                    <td><span th:text="${book.id}">ID</span></td>
+                </tr>
+                <tr>
+                    <td><span>ISBN:</span></td>
+                    <td><span th:text="${book.isbn}">ISBN</span></td>
+                </tr>
+                <tr>
+                    <td><span>Author:</span></td>
+                    <td><span th:text="${book.author}">AUTHOR</span></td>
+                </tr>
+                <tr>
+                    <td><span>Title:</span></td>
+                    <td><span th:text="${book.title}">TITLE</span></td>
+                </tr>
+            </table>
+
+            <h2>Copies of this book</h2>
+
+            <a th:href="@{'/copies/' + ${book.id} + '/create'}">Create a new copy</a>
+
+            <p th:if="${#lists.isEmpty(book.copies)}">This book has no copies</p>
+
+            <table th:if="!${#lists.isEmpty(book.copies)}">
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Availability </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="copy : ${book.copies}">
+                        <td><span th:text="${copy.inventoryNo}"> ID </span></td>
+                        <td>
+                            <span th:if="${copy.loan == null}" th:text="available" style="color:green;"> AVAILABLE </span>
+                            <span th:if="${copy.loan != null}" th:text="unavailable" style="color:red;"> UNAVAILABLE </span>
+                        </td>
+                        <td>
+                            <span th:if="${copy.loan != null}" th:text="${copy.loan.user.username}"> USERNAME </span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

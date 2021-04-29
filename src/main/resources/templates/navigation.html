@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" 
+	xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head th:fragment="head">
+	<title>ACSE Library</title>
+	<link th:href="@{/css/style.css}" type="text/css" rel="stylesheet"/>
+	<link th:href="@{/css/form.css}" type="text/css" rel="stylesheet"/>
+</head>
+
+<nav th:fragment="nav (active_item)" class="navbar">
+	<a sec:authorize="!isAuthenticated" href="/users/login" th:classappend="${active_item} == 'login' ? active : ''">LOGIN</a>
+	<a sec:authorize="!isAuthenticated" href="/users/register" th:classappend="${active_item} == 'register' ? active : ''">REGISTER</a>
+	<a sec:authorize="isAuthenticated" href="/books" th:classappend="${active_item} == 'books' ? active : ''">BOOKS</a>
+	<a sec:authorize="isAuthenticated" href="/loan/loans" th:classappend="${active_item} == 'loans' ? active : ''">LOANS</a>
+	<div sec:authorize="isAuthenticated" class="topnav-right">
+		<div>
+			<form th:action="@{/users/logout}" method="POST">
+				<button type="submit" class="button">LOGOUT</button> 
+			</form>
+		</div>
+	</div>
+</nav>
+	
+<main></main>
+	
+</body>
+</html>

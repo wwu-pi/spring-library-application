@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="navigation :: head"></head>
+	<body>
+		<nav th:replace="navigation :: nav('loans')"></nav>
+		          
+            <h2>Your loans</h2>
+
+            <p th:if="${#lists.isEmpty(loans)}">You do not have any loans</p>
+            
+            <table th:if="!${#lists.isEmpty(loans)}">
+                <thead>
+                    <tr>
+                        <th> ID </th>
+                        <th> Copy ID </th>
+                        <th> Book Name </th>
+                        <th> Return </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="loan : ${loans}">
+                        <td><span th:text="${loan.id}"> ID </span></td>
+                        <td><span th:text="${loan.copy.inventoryNo}"> Copy ID </span></td>
+                        <td><span th:text="${loan.copy.medium.title}"> Book Name </span></td>
+                        <td><a th:href="@{/loan/return(loanId=${loan.id})}">return</a></td>
+                    </tr>
+                </tbody>
+            </table>
+		
+		
+    </body>
+</html>

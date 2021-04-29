@@ -1,0 +1,95 @@
+body {margin:0;}
+
+.navbar {
+  overflow: hidden;
+  background-color: #004d99;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.button {
+  background-color: #004d99;
+  border-color: #004d99;
+  border-style: solid;
+  font-size: 12px;
+  top: 0;
+  font-family: "Montserrat", sans-serif;
+  color: #f2f2f2;
+  padding: 14px 20px;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.navbar a:hover {
+  border-bottom: 4px solid white;
+}
+
+.navbar a.active {
+  border-bottom: 4px solid white;
+}
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: right;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 40px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
+
+.main a:link, .main a:visited {
+  background-color: #004d99;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.main a:hover, .main a:active {
+  background-color: #1e7dd9;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  margin: 5 0 20px 0;
+  padding: 0;
+}
+
+
+
+table {
+  border-collapse: collapse;
+  font-family: "Montserrat", sans-serif;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+tr:hover {background-color:#f5f5f5;}

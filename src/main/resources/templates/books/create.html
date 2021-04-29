@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head th:replace="navigation :: head"></head>
+	<body>
+		<nav th:replace="navigation :: nav('books')"></nav>
+
+        <div class="main">
+            <h1>Create a new book</h1>
+
+            <div class="form-style-2">
+                <div class="form-style-2-heading">Book Details</div>
+                <form method="POST" th:action="@{/books/create}" th:object="${book}">
+                    <label for="isbn">
+                        <span>ISBN <span class="required">*</span></span>
+                        <input type="text" class="input-field" id="isbn" name="isbn" value="" th:field="*{isbn}" />
+                    </label>
+                    <label for="title">
+                        <span>Title <span class="required">*</span></span>
+                        <input type="text" class="input-field" id="title" name="title" value="" th:field="*{title}" />
+                    </label>
+                    <label for="author">
+                        <span>Author <span class="required">*</span></span>
+                        <input type="text" class="input-field" id="author" name="author" value="" th:field="*{author}" />
+                    </label>
+                    <label>
+                        <span></span>
+                        <input type="submit" value="Create" />
+                    </label>
+                    <p th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">ISBN ERROR</p>
+                    <p th:if="${#fields.hasErrors('author')}" th:errors="*{author}">AUTHOR ERROR</p>
+                    <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">TITLE ERROR</p>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
