@@ -14,6 +14,7 @@
                         <th> ID </th>
                         <th> Copy ID </th>
                         <th> Book Name </th>
+                        <th> Borrowed since </th>
                         <th> Return </th>
                     </tr>
                 </thead>
@@ -22,6 +23,7 @@
                         <td><span th:text="${loan.id}"> ID </span></td>
                         <td><span th:text="${loan.copy.inventoryNo}"> Copy ID </span></td>
                         <td><span th:text="${loan.copy.medium.title}"> Book Name </span></td>
+                        <td><span th:text="${#dates.format(loan.date, 'dd-MM-yyyy HH:mm')}"> Borrowed since </span></td>
                         <td><a th:href="@{/loan/return(loanId=${loan.id})}">return</a></td>
                     </tr>
                 </tbody>

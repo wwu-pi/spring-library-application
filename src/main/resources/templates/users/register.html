@@ -7,19 +7,26 @@
 			
         <div class="form-style-2">
 			<div class="form-style-2-heading">Register</div>
-			<form method="POST" th:action="@{/users/create}" id="registerForm">
+			<form method="POST" th:action="@{/users/create}" id="registerForm" th:object="${newUser}">
 				<label for="username">
 					<span>Username <span class="required">*</span></span>
-					<input type="text" class="input-field" id="username" name="username" value="" />
+					<input type="text" class="input-field" id="username" name="username" th:field="*{username}" />
+				</label>
+				<label for="address">
+					<span>Address</span>
+					<input type="text" class="input-field" id="address" name="address" th:field="*{address}" />
 				</label>
 				<label for="password">
 					<span>Password <span class="required">*</span></span>
-					<input type="password" class="input-field" id="password" name="password" value="" />
+					<input type="password" class="input-field" id="password" name="password" th:field="*{password}" />
 				</label>
 				<label>
 					<span></span>
 					<input type="submit" value="Register" />
 				</label>
+				<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}">USERNAME ERROR</p>
+                <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}">ADDRESS ERROR</p>
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">PASSWORD ERROR</p>
 			</form>
 		</div>
 	</body>
