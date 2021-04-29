@@ -26,10 +26,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// Allow public requests related to registering and creating a user
 				.antMatchers(HttpMethod.GET, "/", "/css/*", "users/login", "/users/register").permitAll()
 				.antMatchers(HttpMethod.POST, "/users/create", "/users/performlogin").permitAll()
-		        // Allow to access the H2 console (only for debugging)
-		        .antMatchers("/h2-console/**")
-		        .permitAll()
-
 				// Disallow any other request, except if authenticated
 				.anyRequest().authenticated().and()
 				// Configure login
@@ -41,12 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.deleteCookies("JSESSIONID") // Delete cookies upon logout
 				.logoutSuccessUrl("/users/login") // Direct to login page with the logout-parameter set (will
 															// trigger the success-alert)
-				.permitAll()
-				// Disable CSRF only for H2 console (only for debugging)
-			    .and().csrf()
-			   	.ignoringAntMatchers("/h2-console/**")
-			   	// Set X-Frame-Options to sameorigin to allow the H2 console to function (only for debugging)
-			   	.and().headers().frameOptions().sameOrigin();
+				.permitAll();
 	}
 
 	@Bean
