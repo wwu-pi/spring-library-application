@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="navigation :: head)"></head>
+<head th:replace="navigation :: head"></head>
 
 <body>
 
 <nav th:replace="navigation :: nav('error')"></nav>
 
-<main role="main" class="container">
+<div class="main">
 	<h1>
 		<span th:text="${status}">404</span>
 	</h1>
 	<span th:text="${message != '' ? message : 'Not Found'}">Not Found</span>
-</main>
+</div>
 
 </body>
 </html>
