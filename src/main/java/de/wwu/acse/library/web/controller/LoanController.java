@@ -71,7 +71,13 @@ public class LoanController {
 	public String returnLoan(
 			@AuthenticationPrincipal User currentUser,
 			@RequestParam("loanId") int loanId) {
-		loanService.returnLoan(loanId, currentUser);
-		return "redirect:/";
+		try {
+			loanService.returnLoan(loanId, currentUser);
+			return "redirect:/loan/loans";
+		} catch (NoSuchElementException e) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Loan not found", e);
+		} catch (IllegalArgumentException e) {
+			return "redirect:/books";
+		}
 	}
 }

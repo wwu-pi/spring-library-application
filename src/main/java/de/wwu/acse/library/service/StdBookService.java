@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import de.wwu.acse.library.data.model.Book;
 import de.wwu.acse.library.data.repo.BookRepository;
+import de.wwu.acse.library.service.exception.IsbnAlreadyExists;
 
 @Service
 public class StdBookService implements BookService {
@@ -17,7 +18,10 @@ public class StdBookService implements BookService {
 	private BookRepository bookRepository;
 
 	@Override
-	public Book createBook(Book book) {
+	public Book createBook(Book book) throws IsbnAlreadyExists {
+		if (bookRepository.existsByIsbn(book.getIsbn())) {
+			throw new IsbnAlreadyExists();
+		}
 		return bookRepository.save(book);
 	}
 

@@ -10,7 +10,6 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 import de.wwu.acse.library.data.model.Book;
 import de.wwu.acse.library.data.model.User;
 import de.wwu.acse.library.service.BookService;
+import de.wwu.acse.library.service.exception.IsbnAlreadyExists;
 
 @Controller
 @RequestMapping("/books")
@@ -43,12 +43,17 @@ public class BookController {
 	}
 
 	@PostMapping("/create")
-	public String create(@Valid Book b, Errors errors) {
-		if (errors.hasErrors()) {
+	public String create(@Valid @ModelAttribute("book") Book b, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
 			return "books/create";
 		}
-		bookService.createBook(b);
-		return "redirect:/books";
+		try {
+			bookService.createBook(b);
+			return "redirect:/books";
+		} catch (IsbnAlreadyExists e) {
+			bindingResult.rejectValue("isbn", "error.book", "Book with this Isbn already exists");
+			return "books/create";
+		}
 	}
 
 	@GetMapping("/{id}/edit")

@@ -30,7 +30,7 @@ public class StdLoanService implements LoanService {
 	}
 
 	@Override
-	public void returnLoan(int loanToReturnId, User user) throws NoSuchElementException {
+	public void returnLoan(int loanToReturnId, User user) throws NoSuchElementException, IllegalArgumentException {
 		Optional<Loan> possiblyStoredLoan = loanRepository.findById(loanToReturnId);
 		if (!possiblyStoredLoan.isPresent()) {
 			throw new NoSuchElementException("Loan not found");

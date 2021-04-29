@@ -3,9 +3,8 @@ package de.wwu.acse.library.service;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 
-import javax.validation.ConstraintViolationException;
-
 import de.wwu.acse.library.data.model.Book;
+import de.wwu.acse.library.service.exception.IsbnAlreadyExists;
 
 /**
  * Interface for Book management.
@@ -22,7 +21,7 @@ public interface BookService {
 	 *             parameter.
 	 * @return The newly created book.
 	 */
-	Book createBook(Book book);
+	Book createBook(Book book) throws IsbnAlreadyExists;
 
 	/**
 	 * Returns the book with the specified ID.

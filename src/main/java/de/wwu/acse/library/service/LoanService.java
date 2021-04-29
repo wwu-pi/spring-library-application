@@ -16,7 +16,7 @@ public interface LoanService {
 
 	Collection<Loan> getLoansOfUser(User user);
 
-	void returnLoan(int loanToReturnId, User user) throws NoSuchElementException;
+	void returnLoan(int loanToReturnId, User user) throws NoSuchElementException, IllegalArgumentException;
 
 	void loan(User user, int copyToLoanInvNo) throws NoSuchElementException, IllegalArgumentException;
 
