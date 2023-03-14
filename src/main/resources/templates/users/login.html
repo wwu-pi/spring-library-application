@@ -1,8 +1,8 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="navigation :: head"></head>
+<head th:replace="~{navigation :: head}"></head>
 <body>
-<nav th:replace="navigation :: nav('login')"></nav>
+<nav th:replace="~{navigation :: nav('login')}"></nav>
 
 <div class="form-style-2">
 <div class="form-style-2-heading">Login</div>

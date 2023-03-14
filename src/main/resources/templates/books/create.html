@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-	<head th:replace="navigation :: head"></head>
+	<head th:replace="~{navigation :: head}"></head>
 	<body>
-		<nav th:replace="navigation :: nav('books')"></nav>
+		<nav th:replace="~{navigation :: nav('books')}"></nav>
 
         <div class="main">
             <h1>Create a new book</h1>
