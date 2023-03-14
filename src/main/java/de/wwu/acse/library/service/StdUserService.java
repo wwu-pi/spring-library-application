@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -59,15 +57,6 @@ public class StdUserService implements UserService {
 		} else {
 			throw new NoSuchElementException("The element could not be found.");
 		}
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User result = userRepository.findByUsername(username);
-		if (result == null) {
-			throw new UsernameNotFoundException(String.format("User with name %s cannot be found.", username));
-		}
-		return result;
 	}
 
 	@Override

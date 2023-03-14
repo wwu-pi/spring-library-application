@@ -3,8 +3,6 @@ package de.wwu.acse.library.service;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import de.wwu.acse.library.data.model.User;
 import de.wwu.acse.library.service.exception.UsernameAlreadyExists;
 
@@ -14,7 +12,7 @@ import de.wwu.acse.library.service.exception.UsernameAlreadyExists;
  * @author Henning Heitkoetter
  *
  */
-public interface UserService extends UserDetailsService {
+public interface UserService {
 	User createUser(String name, String address, String plaintextPassword) throws UsernameAlreadyExists;
 
 	User createUser(User newUser) throws UsernameAlreadyExists;

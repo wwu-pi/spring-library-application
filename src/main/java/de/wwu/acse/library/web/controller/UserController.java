@@ -1,10 +1,7 @@
 package de.wwu.acse.library.web.controller;
 
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import de.wwu.acse.library.data.model.User;
 import de.wwu.acse.library.service.UserService;
 import de.wwu.acse.library.service.exception.UsernameAlreadyExists;
+import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 
 @Controller
 @RequestMapping("/users")
@@ -26,7 +25,7 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping("/login")
-	public String login(@AuthenticationPrincipal User currentUser) {
+	public String login() {
 		return "users/login";
 	}
 
@@ -50,7 +49,7 @@ public class UserController {
 		}
 		// Automatically log in new user
 		userService.login(newUser);
-		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, newUser);
+		session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, SecurityContextHolder.getContext());
 		return "redirect:/";
 	}
 

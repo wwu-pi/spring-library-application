@@ -1,6 +1,6 @@
 package de.wwu.acse.library.data.model;
 
-import javax.persistence.Entity;
+import jakarta.persistence.Entity;
 
 /**
  * Entity representing a cd. Fields with get- and set methods are automatically

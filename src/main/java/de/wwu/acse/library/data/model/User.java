@@ -1,26 +1,27 @@
 package de.wwu.acse.library.data.model;
 
-import static javax.persistence.CascadeType.DETACH;
-import static javax.persistence.CascadeType.MERGE;
-import static javax.persistence.CascadeType.PERSIST;
-import static javax.persistence.CascadeType.REFRESH;
+import static jakarta.persistence.CascadeType.DETACH;
+import static jakarta.persistence.CascadeType.MERGE;
+import static jakarta.persistence.CascadeType.PERSIST;
+import static jakarta.persistence.CascadeType.REFRESH;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.NotBlank;
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 
 /**
  * Entity representing a user of the system. Fields with get- and set methods
@@ -31,6 +32,7 @@ import org.springframework.security.core.userdetails.UserDetails;
  * @version 1.1
  */
 @Entity
+@Table(name="LibUser")
 public class User implements UserDetails, java.io.Serializable {
 	private static final long serialVersionUID = -6091824661950209090L;
 	/** Primary key */

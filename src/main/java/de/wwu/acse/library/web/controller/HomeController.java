@@ -14,9 +14,9 @@ public class HomeController {
 	@GetMapping
 	public String index(@AuthenticationPrincipal User currentUser) {
 		if (currentUser == null) {
-			return "users/login";
+			return "/users/login";
 		} else {
-			return "redirect:books/";
+			return "redirect:/books";
 		}
 	}
 

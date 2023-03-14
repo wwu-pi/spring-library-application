@@ -1,9 +1,9 @@
 package de.wwu.acse.library.data.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 /**
  * Entity representing a book. Fields with get- and set methods are
